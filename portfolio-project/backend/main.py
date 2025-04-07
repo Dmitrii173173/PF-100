@@ -9,7 +9,7 @@ app = FastAPI()
 # Настройка CORS
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=["*"],  # В продакшене замените на конкретные домены
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -19,6 +19,10 @@ class ContactForm(BaseModel):
     name: str
     email: str
     message: str
+
+@app.get("/")
+async def root():
+    return {"message": "Welcome to Portfolio API"}
 
 @app.get("/projects")
 async def get_projects():
