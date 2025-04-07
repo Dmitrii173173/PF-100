@@ -1,23 +1,26 @@
-const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:8000';
+// Моковые данные для проектов
+const mockProjects = [
+  {
+    title: "Проект 1",
+    description: "Описание проекта 1",
+    link: "https://github.com/yourname/project1"
+  },
+  {
+    title: "Проект 2",
+    description: "Описание проекта 2",
+    link: "https://github.com/yourname/project2"
+  }
+];
 
 export async function getProjects() {
-  const response = await fetch(`${API_URL}/projects`);
-  if (!response.ok) {
-    throw new Error('Ошибка при загрузке проектов');
-  }
-  return response.json();
+  // Имитация задержки сети
+  await new Promise(resolve => setTimeout(resolve, 500));
+  return mockProjects;
 }
 
 export async function sendMessage(data) {
-  const response = await fetch(`${API_URL}/contact`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(data),
-  });
-  if (!response.ok) {
-    throw new Error('Ошибка при отправке сообщения');
-  }
-  return response.json();
+  // Имитация отправки сообщения
+  await new Promise(resolve => setTimeout(resolve, 500));
+  console.log("Отправлено сообщение:", data);
+  return { status: "ok", message: "Сообщение отправлено!" };
 } 
